@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   get "/" => "home#index"
   root "home#index"
-  resources :users
+  resources :users do
+    resources :posts, only: [:show, :new, :create]
+  end
+  resources :posts, only: [:index] 
   get "/log-in" => "sessions#new"
   post "/log-in" => "sessions#create"
   get "/log-out" => "sessions#destroy", as: :log_out

@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :posts
+  
   attr_accessor :password
   validates :password, confirmation: true
   before_save :encrypt_password
